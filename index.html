@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Delivery Partners – Bridging Intent to Impact.</title>
+    <title>Nexenture</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -43,29 +43,14 @@
       <main>
 
         <section id="home" class="hero cover">
-          <div class="cover-image" style="background-image: url('assets/image-one.jpg');"></div>
+          <div class="cover-image" style="background-image: url('assets/hero-bridge.svg');"></div>
           <div class="cover-overlay"></div>
           <div class="container hero-content">
-            <p class="section-kicker">Welcome to company</p>
-            <h1 class="hero-title">Unlocking Insights</h1>
-            <p class="hero-text" id="hero-text">
-              Nexenture is a delivery partner for organisations that need results, not recommendations.
-              <span class="hero-more" id="hero-more">
-                <br />
-                Unlike traditional consultancies, we do not step away after advice is given. We stay involved, establish
-                execution rhythm, unlock decisions, remove blockers, and build internal capability so results endure
-                long after we exit.
-                <br />
-                Nexenture exists to bridge the gap between vision and reality -- and we are measured by outcomes, not
-                activity.
-                <br />
-                We Listen. We Guide. We Transform.
-              </span>
+            <p class="hero-text">
+              Nexenture is the Execution Bridge between business strategy and global capability - with single-point
+              accountability for delivery.
             </p>
             <div class="button-row">
-              <button class="btn btn-primary" type="button" id="hero-read-more" aria-expanded="false">
-                Read More
-              </button>
               <a class="btn btn-outline" href="#contact-form">Contact us</a>
             </div>
           </div>
@@ -96,7 +81,6 @@
                 At our core, we believe in business as a force for good - giving back and placing people at the heart of
                 every transformation.
               </p>
-              <p class="about-emphasis">We Listen. We Guide. We Transform.</p>
             </div>
           </div>
         </section>
@@ -138,9 +122,8 @@
         <section id="operate" class="operate section">
           <div class="container">
             <div class="section-header center">
-              <p class="section-kicker primary">How we operate</p>
+              <p class="section-kicker primary">How we operate and engage</p>
               <h2 class="section-title">Listen. Guide. Transform.</h2>
-              <p class="section-subtitle">A simple framework that turns intent into measurable outcomes.</p>
             </div>
             <div class="operate-grid">
               <article class="operate-card">
@@ -223,10 +206,7 @@
           <div class="container contact-grid">
             <div>
               <p class="section-kicker primary">Contact us</p>
-              <h2 class="section-title">Lets connect</h2>
-              <p class="section-subtitle left">
-                Tell us about your goals and we will get back to you with a tailored response.
-              </p>
+              <p class="section-title">Would a short explanatory conversation be useful?</p>
             </div>
             <form class="contact-form" id="contact-form-element" novalidate>
               <label>
@@ -239,11 +219,11 @@
               </label>
               <label>
                 Phone number
-                <input type="tel" name="phone" placeholder="+44 000 000 000" required />
+                <input type="tel" name="phone" placeholder="(Country code)(Phone number)" required />
               </label>
               <label>
                 Message
-                <textarea name="message" rows="4" placeholder="Tell us about your project" required></textarea>
+                <textarea name="message" rows="4" placeholder="Please share a brief of your requirement/query" required></textarea>
               </label>
               <button class="btn btn-primary" type="submit">Lets connect</button>
               <p class="form-status" role="status" aria-live="polite"></p>
@@ -260,17 +240,17 @@
           <p class="tagline footer-tagline">We Listen. We Guide. We Transform.</p>
           <p class="footer-follow">
             Follow us on
-            <a class="footer-linkedin" href="#" aria-label="LinkedIn">
+            <a class="footer-linkedin" href="https://www.linkedin.com/in/nexenture/" aria-label="LinkedIn" target="_blank" rel="noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M4.98 3.5c0 1.38-1.11 2.5-2.48 2.5S0 4.88 0 3.5 1.11 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4v14h-4V8zm7.5 0h3.8v1.9h.05c.53-1 1.84-2 3.78-2 4.04 0 4.79 2.66 4.79 6.12V22h-4v-6.9c0-1.64-.03-3.75-2.28-3.75-2.28 0-2.63 1.78-2.63 3.63V22h-4V8z" />
               </svg>
             </a>
           </p>
           <p>Derby, UK</p>
-          <p>Phone: +44 0000 000000</p>
+          <p>Phone: +44 7308 636758</p>
         </div>
         <div class="footer-bottom">
-          <p>Copyright @ Nexenture, All Rights Reserved</p>
+          <p>Copyright 2026 @ Nexenture, All Rights Reserved</p>
         </div>
       </footer>
     </div>
@@ -300,15 +280,33 @@
         });
       }
 
-      const heroReadMore = document.querySelector("#hero-read-more");
-      const heroText = document.querySelector("#hero-text");
-      if (heroReadMore && heroText) {
-        heroReadMore.addEventListener("click", () => {
-          const expanded = heroText.classList.toggle("is-expanded");
-          heroReadMore.setAttribute("aria-expanded", expanded);
-          heroReadMore.textContent = expanded ? "Read Less" : "Read More";
+      const navLinks = document.querySelectorAll(".nav-links a[href^=\"#\"]");
+      const sectionIds = Array.from(navLinks).map((link) => link.getAttribute("href"));
+      const sections = sectionIds
+        .map((id) => document.querySelector(id))
+        .filter((section) => section);
+
+      const setActiveLink = (id) => {
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === id);
         });
+      };
+
+      if (sections.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setActiveLink(`#${entry.target.id}`);
+              }
+            });
+          },
+          { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
+        );
+
+        sections.forEach((section) => observer.observe(section));
       }
+
     </script>
   </body>
 </html>

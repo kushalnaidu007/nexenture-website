@@ -228,6 +228,11 @@ img {
   letter-spacing: 0.01em;
 }
 
+.contact-form .btn {
+  font-size: 18px;
+  padding: 14px 32px;
+}
+
 .btn-primary {
   background: var(--primary);
   color: #fff;
@@ -260,6 +265,18 @@ img {
   line-height: 1.15;
   letter-spacing: -0.015em;
   text-transform: uppercase;
+}
+
+.section-title.section-title-small {
+  font-size: clamp(18px, 1.2vw + 0.6rem, 28px);
+}
+
+.contact .section-title {
+  font-size: clamp(36px, 3vw + 1rem, 64px);
+}
+
+.contact .section-title.section-title-small {
+  font-size: clamp(18px, 1.2vw + 0.6rem, 28px);
 }
 
 .about-copy p {
@@ -325,6 +342,7 @@ img {
 .operate-card p {
   margin: 0;
   color: var(--text-muted);
+  font-size: 18px;
 }
 
 .what-we-do {
